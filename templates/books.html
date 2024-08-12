@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Books</h2>
+<form method="post">
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="text" name="author" placeholder="Author" required>
+    <input type="number" name="quantity" placeholder="Quantity" required>
+    <button type="submit">Add Book</button>
+</form>
+<ul>
+    {% for book in books %}
+    <li>{{ book['title'] }} by {{ book['author'] }} (Quantity: {{ book['quantity'] }})</li>
+    {% endfor %}
+</ul>
+{% endblock %}

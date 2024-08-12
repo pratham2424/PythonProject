@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Transactions</h2>
+<form method="post">
+    <select name="book_id" required>
+        <option value="" disabled selected>Select Book</option>
+        {% for book in books %}
+        <option value="{{ book['id'] }}">{{ book['title'] }}</option>
+        {% endfor %}
+    </select>
+    <select name="member_id" required>
+        <option value="" disabled selected>Select Member</option>
+        {% for member in members %}
+        <option value="{{ member['id'] }}">{{ member['name'] }}</option>
+        {% endfor %}
+    </select>
+    <select name="type" required>
+        <option value="issue">Issue</option>
+        <option value="return">Return</option>
+    </select>
+    <button type="submit">Submit</button>
+</form>
+<ul>
+    {% for transaction in transactions %}
+    <li>{{ transaction['type'].capitalize() }} - Book ID: {{ transaction['book_id'] }}, Member ID: {{ transaction['member_id'] }}, Fee: Rs.{{ transaction['fee'] }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
